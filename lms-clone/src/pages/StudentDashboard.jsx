@@ -14,7 +14,7 @@ const StudentDashboard = () => {
   return (
     <>
       <Navbar />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 pt-20">
+      <div className="mx-auto bg-neutral-950 max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
         {/* Stats Row */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
           <div className="rounded-xl border border-neutral-800 bg-neutral-900 ">
@@ -50,7 +50,7 @@ const StudentDashboard = () => {
                   </span>
                 </span>
               </div>
-              <div className="text-sm text-neutral-400">{user.attendance.percentage || 0}%</div>
+              <div className="text-sm text-neutral-400">{(user.attendance.present / user.attendance.total * 100).toFixed(1)}%</div>
             </div>
           </div>
           <div className="p-4 ">
@@ -62,7 +62,7 @@ const StudentDashboard = () => {
                   aria-valuemax="100" 
                   aria-valuenow="97" 
                   role="progressbar" 
-                  style={{ width: `${user.attendance.percentage || 0}%` }}
+                  style={{ width: `${(user.attendance.present / user.attendance.total * 100).toFixed(1) || 0}%` }}
                 ></div>
               </div>
               <div className="flex justify-between text-xs text-neutral-400">

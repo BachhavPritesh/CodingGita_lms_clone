@@ -6,7 +6,7 @@ import StudentDashboard from './pages/StudentDashboard.jsx';
 function App() {
 
   return (
-    <div className="bg-neutral-900 min-h-screen text-white">
+    <div className="bg-neutral-950 min-h-screen text-white">
       <Routes>
         <Route path='/' element={<Landing />} />
         <Route path='/login' element={<Login />} />
