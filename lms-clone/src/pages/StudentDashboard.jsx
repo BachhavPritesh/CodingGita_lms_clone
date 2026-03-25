@@ -5,12 +5,12 @@ const StudentDashboard = () => {
    const [open, setOpen] = React.useState(false);
   
     const data = localStorage.getItem("user");
-    const user = JSON.parse(data);
-    const name = user.name;
-    const university = user.university;
-    const email = user.email;
-    const mobile = user.mobile;
-    const uid = user.uid;
+    const user = data ? JSON.parse(data) : {};
+    const name = user?.name || "Student";
+    const university = user?.university || "N/A";
+    const email = user?.email || "N/A";
+    const mobile = user?.mobile || "N/A";
+    const uid = user?.uid || "N/A";
   return (
     <>
       <Navbar />
@@ -42,15 +42,17 @@ const StudentDashboard = () => {
           <div className="p-4 border-b border-neutral-800 ">
             <div className="flex items-center justify-between">
               <div className="text-white font-semibold">
-                {user.attendance.semester} Attendance
+                {user?.attendance?.semester || "N/A"} Attendance
                 <span className="ml-5"></span>
                 <span className="ml-5">
                   <span className="inline-flex items-center rounded-md border px-2 py-0.5 text-xs bg-purple-600/20 border-purple-600/50 text-purple-400">
-                    Bonus {user.attendance.bonus || 0}%
+                    Bonus {user?.attendance?.bonus || 0}%
                   </span>
                 </span>
               </div>
-              <div className="text-sm text-neutral-400">{(user.attendance.present / user.attendance.total * 100).toFixed(1)}%</div>
+              <div className="text-sm text-neutral-400">
+                {user?.attendance?.total ? (user.attendance.present / user.attendance.total * 100).toFixed(0) : 0}%
+              </div>
             </div>
           </div>
           <div className="p-4 ">
@@ -62,12 +64,12 @@ const StudentDashboard = () => {
                   aria-valuemax="100" 
                   aria-valuenow="97" 
                   role="progressbar" 
-                  style={{ width: `${(user.attendance.present / user.attendance.total * 100).toFixed(1) || 0}%` }}
+                  style={{ width: `${user?.attendance?.total ? (user.attendance.present / user.attendance.total * 100).toFixed(1) : 0}%` }}
                 ></div>
               </div>
               <div className="flex justify-between text-xs text-neutral-400">
-                <span>Present {user.attendance.present || 0} / {user.attendance.total || 0} marked sessions</span>
-                <span>{user.attendance.startDate} - {user.attendance.endDate}</span>
+                <span>Present {user?.attendance?.present || 0} / {user?.attendance?.total || 0} marked sessions</span>
+                <span>{user?.attendance?.startDate || "N/A"} - {user?.attendance?.endDate || "N/A"}</span>
               </div>
             </div>
           </div>
@@ -80,9 +82,9 @@ const StudentDashboard = () => {
             <div className="p-4 border-b border-neutral-800 ">
               <div className="flex items-center gap-3">
                 <img 
-                  alt="SUTHAR ANANDKUMAR VAJARAM" 
+                  alt={user.name} 
                   className="w-14 h-14 rounded-full object-cover" 
-                  src={user.avatar || "https://avatars.githubusercontent.com/u/224962377?v=4&size=64"}
+                  src={user.avatar || user.image || "https://avatars.githubusercontent.com/u/224962377?v=4&size=64"}
                 />
                 <div>
                   <div className="flex items-center flex-wrap gap-2">
@@ -132,10 +134,12 @@ const StudentDashboard = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               <div className="rounded-xl border border-neutral-800 bg-neutral-950 p-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-teal-500 flex items-center justify-center text-xs font-bold text-white">A</div>
+                  <div className="w-12 h-12 rounded-full bg-teal-500 flex items-center justify-center text-xs font-bold text-white">
+                    {(user?.mentors?.[0]?.name || "N")[0].toUpperCase()}
+                  </div>
                   <div className="flex-1">
-                    <div className="text-white font-medium leading-tight">{user.mentors[0]?.name || 'N/A'}</div>
-                    <div className="text-neutral-400 text-xs">{user.university}</div>
+                    <div className="text-white font-medium leading-tight">{user?.mentors?.[0]?.name || 'N/A'}</div>
+                    <div className="text-neutral-400 text-xs">{university}</div>
                   </div>
                 </div>
               </div>
