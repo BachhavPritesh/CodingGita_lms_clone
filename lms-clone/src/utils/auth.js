@@ -2,13 +2,13 @@ export const students = [
   {
     uid: "1001",
     password: "123",
-    name: "Anand Suthar",
-    email: "anand880441@gmail.com",
-    mobile: "8765432109",
+    name: "PRITESH BACHHAV",
+    email: "pritesh@gmail.com",
+    mobile: "8200762015",
     university: "SUxCG 714",
 
     avatar:
-      "https://res.cloudinary.com/dpvmzqfvv/image/upload/v1770271264/AnandIMG_-_Copy_mou9hb.jpg",
+      "https://avatars.githubusercontent.com/u/225146620?s=400&u=6c7adbf586ff5fdf49a7b6f3ea503d4303e80d6c&v=4",
 
     attendance: [
       {
